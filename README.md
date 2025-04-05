@@ -29,7 +29,7 @@ An interactive 3D visualization tool that demonstrates the relationship between 
 
 ## Live Demo 線上展示
 
-[Demo Link will be added after deployment 部署後會新增展示連結]
+[Try the live demo here 點此體驗](https://willywsm1013.github.io/plane-angle-visualizer)
 
 ## License 授權
 
