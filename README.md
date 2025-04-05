@@ -6,6 +6,11 @@ An interactive 3D visualization tool that demonstrates the relationship between 
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://willywsm1013.github.io/plane-angle-visualizer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Development](https://img.shields.io/badge/Developed%20with-Cursor%20AI-blue)](https://cursor.sh)
+
+> 🤖 This project is developed with the assistance of Cursor AI IDE, enhancing development efficiency and code quality.
+> 
+> 本專案使用 Cursor AI IDE 協助開發，提升開發效率與程式碼品質。
 
 ## Overview 概述
 
