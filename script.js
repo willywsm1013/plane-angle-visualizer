@@ -86,6 +86,8 @@ function init() {
     plane1.add(wireframe1);
 
     // 平面 2（綠色）- 可旋轉平面
+    // 創建一個新的層次結構
+    // 實際平面
     const material2 = new THREE.MeshStandardMaterial({
         color: 0x28a745,
         side: THREE.DoubleSide,
@@ -139,8 +141,70 @@ function init() {
     createAngleVisualization();
 
     // 添加坐標軸輔助
-    const axesHelper = new THREE.AxesHelper(1.5);
-    scene.add(axesHelper);
+    const axesLength = 3; // Length of the axes
+    
+    // X axis (Red)
+    const xAxis = new THREE.ArrowHelper(
+        new THREE.Vector3(1, 0, 0),
+        new THREE.Vector3(0, 0, 0),
+        axesLength,
+        0xFF0000,
+        0.2,
+        0.1
+    );
+    scene.add(xAxis);
+
+    // Y axis (Green)
+    const yAxis = new THREE.ArrowHelper(
+        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(0, 0, 0),
+        axesLength,
+        0x00FF00,
+        0.2,
+        0.1
+    );
+    scene.add(yAxis);
+
+    // Z axis (Blue)
+    const zAxis = new THREE.ArrowHelper(
+        new THREE.Vector3(0, 0, 1),
+        new THREE.Vector3(0, 0, 0),
+        axesLength,
+        0x0000FF,
+        0.2,
+        0.1
+    );
+    scene.add(zAxis);
+
+    // Add axis labels using sprites for better visibility
+    function createTextSprite(text, position) {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = 64;
+        canvas.height = 64;
+        
+        context.font = 'Bold 40px Arial';
+        context.fillStyle = 'black';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(text, 32, 32);
+        
+        const texture = new THREE.CanvasTexture(canvas);
+        const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+        const sprite = new THREE.Sprite(spriteMaterial);
+        sprite.position.copy(position);
+        sprite.scale.set(0.5, 0.5, 1);
+        return sprite;
+    }
+
+    // Add axis labels
+    const xLabel = createTextSprite('X', new THREE.Vector3(axesLength + 0.3, 0, 0));
+    const yLabel = createTextSprite('Y', new THREE.Vector3(0, axesLength + 0.3, 0));
+    const zLabel = createTextSprite('Z', new THREE.Vector3(0, 0, axesLength + 0.3));
+    
+    scene.add(xLabel);
+    scene.add(yLabel);
+    scene.add(zLabel);
 
     // 添加輔助文字標籤
     addTextLabels();
@@ -345,9 +409,32 @@ function updatePlanesAndAngle() {
     }
 
     // 藍色平面保持固定不變
+
+    // 獲取旋轉角度
+    const rotationX = parseFloat(sliderPlane2RotX.value);
+    const rotationY = parseFloat(sliderPlane2RotY.value);
+
+    // 1. 首先計算與z軸的夾角（rotationX控制）
+    const zAxisAngle = rotationX;  // 與z軸的夾角
     
-    // 只更新綠色平面的旋轉
-    plane2.rotation.set(parseFloat(sliderPlane2RotX.value), parseFloat(sliderPlane2RotY.value), 0, 'XYZ');
+    // 2. 計算初始法向量（在xz平面上，與z軸成zAxisAngle角）
+    const normal = new THREE.Vector3();
+    normal.x = Math.sin(zAxisAngle);  // x分量
+    normal.y = 0;                     // 初始時y分量為0
+    normal.z = Math.cos(zAxisAngle);  // z分量
+    
+    // 3. 圍繞z軸旋轉（rotationY控制）
+    const rotationMatrix = new THREE.Matrix4();
+    rotationMatrix.makeRotationAxis(new THREE.Vector3(0, 0, 1), rotationY);
+    normal.applyMatrix4(rotationMatrix);
+    
+    // 4. 計算從初始方向(0,0,1)到目標法向量的旋轉
+    const quaternion = new THREE.Quaternion();
+    const up = new THREE.Vector3(0, 0, 1);
+    quaternion.setFromUnitVectors(up, normal);
+    
+    // 應用旋轉
+    plane2.quaternion.copy(quaternion);
 
     // 確保在旋轉後更新世界矩陣
     plane1.updateMatrixWorld();

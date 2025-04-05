@@ -164,6 +164,15 @@ input[type="range"] {
     vertical-align: middle;
 }
 
+.control-note {
+    margin-left: 85px;
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
+
 #tip {
     margin-top: 15px;
     font-size: 0.9em;
