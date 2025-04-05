@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平面夾角與法向量夾角</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="scene-container"></div>
+        <div id="info">
+            <h1>平面夾角 = 法向量夾角</h1>
+            <div id="explanation">
+                <div class="key-concept">
+                    <div class="concept-icon">📐</div>
+                    <div class="concept-text">
+                        <strong>平面夾角</strong>是兩個平面相交時形成的角度
+                    </div>
+                </div>
+                <div class="key-concept">
+                    <div class="concept-icon">↑</div>
+                    <div class="concept-text">
+                        <strong>法向量</strong>是垂直於平面的箭頭
+                    </div>
+                </div>
+                <div class="key-concept highlight">
+                    <div class="concept-icon">✨</div>
+                    <div class="concept-text">
+                        <strong>重要概念</strong>：平面間的夾角等於它們法向量間的夾角
+                    </div>
+                </div>
+            </div>
+            
+            <div id="color-guide">
+                <div class="color-item">
+                    <span class="color-box blue"></span> 藍色平面（固定）
+                    <span class="color-box red"></span> 藍色平面的法向量
+                </div>
+                <div class="color-item">
+                    <span class="color-box green"></span> 綠色平面（可旋轉）
+                    <span class="color-box yellow"></span> 綠色平面的法向量
+                </div>
+            </div>
+
+            <div id="angle-display">
+                <div class="angle-box">
+                    <div class="angle-label">平面夾角 = 法向量夾角</div>
+                    <div class="angle-value"><span id="angle-value">0.00</span>°</div>
+                </div>
+            </div>
+            
+            <div id="controls">
+                <div class="plane-controls">
+                    <h2>綠色平面控制</h2>
+                    <label for="plane2-rotX">上下轉動:</label>
+                    <input type="range" id="plane2-rotX" min="-1.57" max="1.57" step="0.01" value="-0.3">
+                    <br>
+                    <label for="plane2-rotY">左右轉動:</label>
+                    <input type="range" id="plane2-rotY" min="-1.57" max="1.57" step="0.01" value="0.5">
+                </div>
+            </div>
+            <div id="tip">
+                <p><i>使用滑鼠拖曳場景旋轉視角，滾輪可以放大縮小</i></p>
+                <button id="reset-view" class="action-button">重置視角</button>
+                <button id="show-angle" class="action-button">顯示實際角度</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Three.js and OrbitControls -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
