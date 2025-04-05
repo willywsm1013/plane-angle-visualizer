@@ -4,6 +4,15 @@ An interactive 3D visualization tool that demonstrates the relationship between 
 
 這是一個互動式 3D 視覺化工具，用於展示平面夾角與法向量夾角之間的關係。
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://willywsm1013.github.io/plane-angle-visualizer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Overview 概述
+
+This educational tool helps students and educators visualize and understand the relationship between plane angles and their normal vectors in 3D space. It demonstrates that the angle between two planes equals the angle between their normal vectors.
+
+這個教育工具幫助學生和教育者視覺化並理解三維空間中平面夾角與其法向量之間的關係。它展示了兩個平面之間的夾角等於它們法向量之間的夾角。
+
 ## Features 功能
 
 - Interactive 3D visualization 互動式 3D 視覺化
@@ -14,10 +23,10 @@ An interactive 3D visualization tool that demonstrates the relationship between 
 
 ## Technologies Used 使用技術
 
-- Three.js
-- HTML5
-- CSS3
-- JavaScript (ES6+)
+- Three.js - 3D graphics library
+- HTML5 - Structure and semantics
+- CSS3 - Styling and responsiveness
+- JavaScript (ES6+) - Interactive functionality
 
 ## Usage 使用方法
 
@@ -30,6 +39,36 @@ An interactive 3D visualization tool that demonstrates the relationship between 
 ## Live Demo 線上展示
 
 [Try the live demo here 點此體驗](https://willywsm1013.github.io/plane-angle-visualizer)
+
+## Local Development 本地開發
+
+To run this project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/willywsm1013/plane-angle-visualizer.git
+   cd plane-angle-visualizer
+   ```
+
+2. Serve the files using a local server. For example, using Python:
+   ```bash
+   # Python 3
+   python -m http.server 8000
+   ```
+   Or using Node.js:
+   ```bash
+   # Using npx
+   npx serve
+   ```
+
+3. Open your browser and visit `http://localhost:8000`
+
+## Contributing 貢獻
+
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
 
 ## License 授權
 
